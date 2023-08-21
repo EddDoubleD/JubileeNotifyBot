@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:13.3
+    environment:
+      POSTGRES_DB: "JNBot"
+      POSTGRES_USER: "jubilee"
+      POSTGRES_PASSWORD: "Y87-jLdwh1CS"
+    ports:
+      - "5432:5432"

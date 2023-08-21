@@ -1,6 +1,7 @@
 package com.edddoubled.jubileenotifybot.telegram;
 
 import com.edddoubled.jubileenotifybot.telegram.handler.CallbackAdapter;
+import com.edddoubled.jubileenotifybot.telegram.handler.CallbackHandler;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,16 +23,16 @@ public class JubileeNotifyBot extends SpringWebhookBot {
     String botUsername;
     String botToken;
 
-    CallbackAdapter callbackAdapter;
+    CallbackHandler<Update> callbackHandler;
 
-    public JubileeNotifyBot(SetWebhook setWebhook, CallbackAdapter callbackAdapter) {
+    public JubileeNotifyBot(SetWebhook setWebhook, CallbackHandler<Update> callbackHandler) {
         super(setWebhook);
 
-        this.callbackAdapter = callbackAdapter;
+        this.callbackHandler = callbackHandler;
     }
 
     @Override
     public BotApiMethod<?> onWebhookUpdateReceived(Update update) {
-        return callbackAdapter.process(update);
+        return callbackHandler.process(update);
     }
 }
